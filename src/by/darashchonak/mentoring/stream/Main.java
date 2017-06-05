@@ -46,9 +46,8 @@ public class Main {
 
         System.out.println("Books with more than 200 pages: " + moreThat200);
 
-        Book maxPages = Arrays.stream(books).max(Comparator.comparing(Book::getNumberOfPages)).get();
-
-        System.out.println("Book with max pages: " + maxPages);
+        Arrays.stream(books).max(Comparator.comparing(Book::getNumberOfPages))
+                .ifPresent(p -> System.out.println("Book with max pages: " + p));
 
         List singleAuthor = Arrays.stream(books).filter(b -> b.getAuthors().size() == 1).collect(Collectors.toList());
 
@@ -73,11 +72,10 @@ public class Main {
 
         System.out.println("Distinct Authors " + authors);
 
-        Optional<Book> biggestBookOfHawking = Arrays.stream(books).filter(book -> book.getAuthors().contains(hawking))
+        Arrays.stream(books).filter(book -> book.getAuthors().contains(hawking))
                 .peek(book -> System.out.println(book.getTitle()))
-                .max(Comparator.comparing(Book::getNumberOfPages));
-
-        System.out.println("Biggest book: " + biggestBookOfHawking.orElse(null));
+                .max(Comparator.comparing(Book::getNumberOfPages))
+                .ifPresent(book -> System.out.println("Biggest book: " + book));
 
         // Parallel stream
         int sumOfPages = Arrays.stream(books).parallel().mapToInt(Book::getNumberOfPages).sum();
