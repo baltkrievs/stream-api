@@ -1,14 +1,38 @@
 package by.darashchonak.mentoring.stream;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Created by Mikhail_Darashchonak on 6/2/17.
- */
 public class Book {
 
     private String title;
-    private String numberOfPages;
-    private List<Author> authors;
+    private int numberOfPages;
+    private Set<Author> authors;
 
+    public Book(String title, int numberOfPages, Set<Author> authors) {
+        this.title = title;
+        this.numberOfPages = numberOfPages;
+        this.authors = authors;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public Set<Author> getAuthors() {
+        return new HashSet<>(authors);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", numberOfPages=" + numberOfPages +
+                ", authors=" + authors +
+                '}';
+    }
 }
